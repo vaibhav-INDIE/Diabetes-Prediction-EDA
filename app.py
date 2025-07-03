@@ -24,15 +24,19 @@ st.write("Enter your health data to check your diabetes risk. Dataset ranges sho
 
 # Input sliders with stats displayed
 def input_with_stats(label, min_val, avg_val, max_val, step=1.0):
+    # Ensure value has same type as min_val/max_val/step
+    default_val = round(avg_val, 2) if isinstance(step, float) else round(avg_val)
+    
     value = st.slider(
         f"{label} (avg: {avg_val})",
         min_value=min_val,
         max_value=max_val,
-        value=round(avg_val),
+        value=default_val,
         step=step
     )
     st.caption(f"Min: {min_val} | Avg: {avg_val} | Max: {max_val}")
     return value
+
 
 # Column layout
 col1, col2 = st.columns(2)
